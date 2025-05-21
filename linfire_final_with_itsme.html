@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linfire Global Services</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 191, 255, 0.1);
+      animation: float 20s infinite ease-in-out;
+    }
+    .circle:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .circle:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: 15%;
+      animation-delay: 5s;
+    }
+    .circle:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 50%;
+      animation-delay: 10s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+    header {
+      background-color: #1a237e;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+    header img {
+      max-width: 200px;
+      animation: pulse 3s infinite;
+    }
+    header h1 {
+      font-size: 3rem;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+    nav {
+      background: #0d1b4c;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      background-color: #111;
+      margin-top: 1rem;
+    }
+    h2 {
+      color: #00bfff;
+    }
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .image-grid img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .image-grid img:hover {
+      transform: scale(1.05);
+    }
+    .contact-buttons a, .order-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background: #3949ab;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .contact-buttons a:hover, .order-button:hover {
+      background: #5c6bc0;
+    }
+    footer {
+      background-color: #1a237e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    .order-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    @media (max-width: 480px) {
+      body {
+        font-size: 16px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+    }
+    .menu-toggle {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      z-index: 1000;
+    }
+    .menu-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #1a237e;
+      border: 1px solid #3949ab;
+      border-radius: 5px;
+      margin-top: 10px;
+      min-width: 160px;
+      z-index: 1001;
+    }
+    .menu-toggle:hover .menu-content {
+      display: block;
+    }
+    .menu-content a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+    }
+    .menu-content a:hover {
+      background-color: #3949ab;
+    }
+  
+    /* Updated Styles for Sections 8-10 */
+    #contact {
+      background-color: #1e1e2f;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+    #contact h2, #orders h2, footer h2 {
+      color: gold;
+    }
+    #contact p, #orders p, footer p, footer li, footer a {
+      color: white;
+      font-weight: bold;
+    }
+    .order-section {
+      text-align: center;
+      margin-top: 2rem;
+      background-color: #2a2a40;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+    footer {
+      background-color: #111129;
+      color: white;
+      padding: 2rem;
+      border-top: 5px solid #00bfff;
+    }
+    .contact-info, .services, .stats {
+      background-color: rgba(0, 191, 255, 0.1);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+    .footer-icons img {
+      margin: 10px;
+      width: 30px;
+      filter: drop-shadow(0 0 3px #00bfff);
+    }
+    .stats-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .stat {
+      background-color: #000;
+      border: 2px solid #00bfff;
+      color: white;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,191,255,0.4);
+      transition: transform 0.3s ease;
+    }
+    .stat:hover {
+      transform: scale(1.05);
+    }
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00bfff;
+      margin-bottom: 5px;
+    }
+</style>
+
+<style>
+  .slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .slideshow {
+    display: none;
+    width: 100%;
+  }
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+</style>
+</head>
+<body>
+
+  <div class="menu-toggle">
+    &#8942;
+    <div class="menu-content">
+      <a href="#about">About Us</a>
+      <a href="https://wa.me/254706387820?text=Career%20Opportunities">Careers</a>
+      <a href="https://wa.me/254706387820?text=Current%20Offers">Offers</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </div>
+
+  <div class="background-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <header>
+    <a href="https://ibb.co/ZRv6vRj7"><img src="https://i.ibb.co/wZ8N8Zkj/my-logo-page-0001-DD-Photoroom.png" alt="my-logo-page-0001-DD-Photoroom" border="0"></a>
+    <h1>LINFIRE GLOBAL</h1>
+    <p><em>Make Your Next Level with Linfire Global</em></p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#graphics">Graphics</a>
+    <a href="#airbnb">Airbnb</a>
+    <a href="#houses">Houses</a>
+    <a href="#cars">Cars</a>
+    <a href="#contact">Contact</a>
+    <a href="#orders">Orders & Services</a>
+  </nav>
+
+  <section id="about" style="text-align: center;">
+    <h2 style="color:gold; font-weight:bold;">About Us</h2>
+    <p>Linfire Global is a creative and solutions-driven company specializing in modern graphic design, real estate (Airbnb and house sales), and high-quality car sales. Our mission is to bring your vision to life through professional, aesthetic visuals and trusted services in digital and property markets.</p>
+  </section>
+
+  <section id="why-choose-us" style="font-weight:bold;">
+    <h2>Why Choose Us</h2>
+    <ul>
+      <li>Innovative and modern design approach</li>
+      <li>Reliable real estate and auto services</li>
+      <li>Friendly and fast customer support</li>
+    </ul>
+  </section>
+
+  
+<section id="graphics">
+  <h2 style="text-align:center; font-size: 2.5rem; font-weight:bold;">ITS ME</h2>
+  <p style="text-align:center;">A showcase of creative expression and personal design style.</p>
+  <div class="slideshow-container">
+    <img class="slideshow itsme-group fade" src="https://i.ibb.co/xTqbgrh/7c89523ccd4c0719467d94886c257558.jpg" style="width:100%; max-width:700px; display:block; margin:auto;">
+<img class="slideshow itsme-group fade" src="https://i.ibb.co/1fBJH1DH/fea98ff7069a9f797777c0ace97f0773.jpg" style="width:100%; max-width:700px; display:block; margin:auto;">
+<img class="slideshow itsme-group fade" src="https://i.ibb.co/yF2DMcsZ/89f6ac50419f649b97c9fa28530e6ce5.jpg" style="width:100%; max-width:700px; display:block; margin:auto;">
+<img class="slideshow itsme-group fade" src="https://i.ibb.co/gMKNyLxT/9ef54bb70a2512700cd4c3b98bf3dd87.jpg" style="width:100%; max-width:700px; display:block; margin:auto;">
+  </div>
+</section>
+
+<section id="flyers">
+  <h2 style="text-align:center; color:gold;">Flyers & Banners</h2>
+  <p style="text-align:center;">Explore promotional flyers and branded banners created for clients.</p>
+  <div class="image-grid">
+    
+        <div class="slideshow-container">
+            <img class="slideshow flyer-group-6 fade" src="https://i.ibb.co/9kYc82wZ/448d73d0dd5d9796739adbafb794fcdf.jpg" style="width:100%;">
+<img class="slideshow flyer-group-6 fade" src="https://i.ibb.co/6Rt7FRLf/b8820578d580dab5c9dc42f197038612.jpg" style="width:100%;">
+<img class="slideshow flyer-group-6 fade" src="https://i.ibb.co/rKF7Lj1Q/5130b3b2da17821380125dd7c85b68ae.jpg" style="width:100%;">
+<img class="slideshow flyer-group-6 fade" src="https://i.ibb.co/1GpGYhwg/1b9a8f04e2f2d61d35bda4a1e0e38962.jpg" style="width:100%;">
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slideshow flyer-group-7 fade" src="https://i.ibb.co/3Y4tgLHQ/64772901a0b1222b9089cb3aec4acc6f.jpg" style="width:100%;">
+<img class="slideshow flyer-group-7 fade" src="https://i.ibb.co/d4mRD3VZ/207479fc035b1da67e7c3656ba57862a.jpg" style="width:100%;">
+<img class="slideshow flyer-group-7 fade" src="https://i.ibb.co/pjL5qg60/d0844e80bba0b104dd0bbcf170305d79.jpg" style="width:100%;">
+<img class="slideshow flyer-group-7 fade" src="https://i.ibb.co/hJ8wJW69/1dce3b417293866f48910af3298e5aef.jpg" style="width:100%;">
+        </div>
+        
+  </div>
+</section>
+
+<section id="salon-logos">
+  <h2>SALON LOGOS</h2>
+  <p>Explore creative and elegant salon logo designs tailored to beauty brands.</p>
+  
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-1 fade" src="https://i.ibb.co/pBD8pGNB/images-7.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/xSQptRGX/images-6.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/9mby1P6S/images-9.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/G4vCppwt/This-Swedish-Woman-Creates-Stunning-Braided-Hairstyles-And-Teaches-You-How-To-Do-It-Yourself.jpg" style="width:100%;">
+        </div>
+        
+</section>
+
+<section id="salon-logos-extended">
+  <h2>SALON LOGOS – EXTENDED</h2>
+  <p>Additional creative logo designs tailored for salon and beauty businesses.</p>
+  
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-1 fade" src="https://i.ibb.co/tPpPrpjM/1747848460992.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/0jTZGsXk/1747848373238.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/bgPdy8cp/1747848509129.jpg" style="width:100%;">
+<img class="slideshow salon-group-1 fade" src="https://i.ibb.co/MbGPF2f/1747848472054.jpg" style="width:100%;">
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-2 fade" src="https://i.ibb.co/zVRgjYWW/1747848576289.jpg" style="width:100%;">
+<img class="slideshow salon-group-2 fade" src="https://i.ibb.co/zLBk3SN/1747848574185.jpg" style="width:100%;">
+<img class="slideshow salon-group-2 fade" src="https://i.ibb.co/s91gXybK/1747848412190.jpg" style="width:100%;">
+<img class="slideshow salon-group-2 fade" src="https://i.ibb.co/VcTnQMpF/1747848404943.jpg" style="width:100%;">
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-3 fade" src="https://i.ibb.co/tp8v8nRf/1747848552410.jpg" style="width:100%;">
+<img class="slideshow salon-group-3 fade" src="https://i.ibb.co/N6gvQDV3/1747848522074.jpg" style="width:100%;">
+<img class="slideshow salon-group-3 fade" src="https://i.ibb.co/V0c8yJzG/1747848582175.jpg" style="width:100%;">
+<img class="slideshow salon-group-3 fade" src="https://i.ibb.co/wZh3fD6Z/1747848578526.jpg" style="width:100%;">
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-4 fade" src="https://i.ibb.co/pjJb7Xt1/1747848571717.jpg" style="width:100%;">
+<img class="slideshow salon-group-4 fade" src="https://i.ibb.co/zHJ3CKxS/1747848586968.jpg" style="width:100%;">
+<img class="slideshow salon-group-4 fade" src="https://i.ibb.co/tw8ysQ94/1743668917843.jpg" style="width:100%;">
+<img class="slideshow salon-group-4 fade" src="https://i.ibb.co/1Yzxz504/1747848584583.jpg" style="width:100%;">
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slideshow salon-group-5 fade" src="https://i.ibb.co/ymHzSgkj/1743668939736.jpg" style="width:100%;">
+        </div>
+        
+</section>
+
+
+
+
+
+
+  
+<section id="airbnb">
+  <h2>Airbnb Properties</h2>
+  <p>Browse our stylish and affordable Airbnb listings in top locations.</p>
+  <div class="slideshow-container">
+    <img class="slideshow airbnb-group fade" src="https://i.imgur.com/woDvOVg.jpeg" alt="Airbnb Property">
+  </div>
+  <p style="text-align:center; font-size: 1.1rem; font-weight: bold; margin-top: 1rem;">Modern Staycation BnB</p>
+</section>
+
+
+  
+<section id="houses">
+  <h2>Houses for Sale</h2>
+  <p>We offer a variety of homes for every budget and taste. Contact us for viewing.</p>
+  <div class="slideshow-container">
+    <img class="slideshow house-group fade" src="https://i.imgur.com/lxLmAwQ.jpeg" alt="House for Sale">
+  </div>
+  <p style="text-align:center; font-size: 1.2rem; font-weight: bold; margin-top: 1rem;">From 66M</p>
+</section>
+
+
+  
+<section id="cars">
+  <h2>Cars for Sale</h2>
+  <p>Get great deals on reliable and stylish cars from Linfire Global.</p>
+  <div class="slideshow-container">
+    <img class="slideshow car-group fade" src="https://i.imgur.com/uQWVqZ1.jpeg" alt="Car 1">
+    <img class="slideshow car-group fade" src="https://i.imgur.com/g9Zgzlw.jpeg" alt="Car 2">
+    <img class="slideshow car-group fade" src="https://i.imgur.com/awMkjZj.jpeg" alt="Car 3">
+  </div>
+  <p style="text-align:center; font-size: 1.2rem; font-weight: bold; margin-top: 1rem;">From 7M</p>
+</section>
+
+
+  <section id="testimonials">
+    <h2>What Clients Say</h2>
+    <blockquote>"Linfire transformed my brand. Highly recommended!" – Sarah K.</blockquote>
+    <blockquote>"Professional, fast, and creative. Best graphic design service." – Brian T.</blockquote>
+  </section>
+
+  <section id="newsletter" style="text-align:center;">
+    <h2>Stay Updated</h2>
+    <p>Subscribe to our newsletter for deals and updates.</p>
+    <input type="email" placeholder="Enter your email" style="padding:10px; width:60%;">
+    <button style="padding:10px 20px; background:#3949ab; color:white;">Subscribe</button>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone/WhatsApp: <a href="https://wa.me/254706387820">+254 706 387820</a></p>
+    <p>Email: <a href="mailto:linfireglobal@gmail.com">linfireglobal@gmail.com</a></p>
+    <div class="contact-buttons">
+      <a href="https://wa.me/254706387820" target="_blank">Chat on WhatsApp</a>
+      <a href="mailto:linfireglobal@gmail.com">Send Email</a>
+    </div>
+  </section>
+
+  <section id="orders" class="order-section">
+    <h2>Orders & Services</h2>
+    <p>Request our services or place your order directly.</p>
+    <a href="https://wa.me/254706387820" class="order-button">Order via WhatsApp</a>
+    <a href="mailto:linfireglobal@gmail.com" class="order-button">Order via Email</a>
+  </section>
+
+  
+  <footer>
+    <div class="contact-info">
+      <h2>CONTACT</h2>
+      <p>Location: Nairobi, Kenya</p>
+      <p><a href="tel:+254706387820">Call: +254 706 387820</a></p>
+      <p><a href="https://wa.me/254706387820" target="_blank">WhatsApp: +254 706 387820</a></p>
+      <p><a href="mailto:linfireglobal@gmail.com">Email: linfireglobal@gmail.com</a></p>
+      <p><a href="https://facebook.com/linfire_rox" target="_blank">Facebook: Linfire Rox</a></p>
+    </div>
+
+    <div class="services">
+      <h2>SERVICES</h2>
+      <ul>
+        <li>Graphic Design</li>
+        <li>Airbnb Management</li>
+        <li>House Sales</li>
+        <li>Car Sales</li>
+      </ul>
+    </div>
+
+    <div class="stats">
+      <h2>OUR IMPACT</h2>
+      <div class="stats-box">
+        <div class="stat">
+          <div class="stat-number">18</div>
+          <p>Design Projects</p>
+        </div>
+        <div class="stat">
+          <div class="stat-number">12</div>
+          <p>Houses Sold</p>
+        </div>
+        <div class="stat">
+          <div class="stat-number">25</div>
+          <p>Airbnb Hosts</p>
+        </div>
+        <div class="stat">
+          <div class="stat-number">30+</div>
+          <p>Happy Clients</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-icons">
+      <a href="https://instagram.com/linfire_rox" target="_blank"><img src="https://img.icons8.com/ios-filled/50/00bfff/instagram-new.png" alt="Instagram"/></a>
+      <a href="https://facebook.com/linfire_rox" target="_blank"><img src="https://img.icons8.com/ios-filled/50/00bfff/facebook-new.png" alt="Facebook"/></a>
+      <a href="https://twitter.com/linfire_rox" target="_blank"><img src="https://img.icons8.com/ios-filled/50/00bfff/twitter.png" alt="Twitter"/></a>
+    </div>
+
+    <p style="text-align:center; margin-top:2rem;">&copy; 2025 Linfire Global. All Rights Reserved.</p>
+  </footer>
+
+<script>
+  let slideIndices = {};
+
+  function showSlides(className) {
+    let slides = document.getElementsByClassName(className);
+    if (!slideIndices[className]) slideIndices[className] = 0;
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndices[className]++;
+    if (slideIndices[className] > slides.length) {slideIndices[className] = 1}    
+    slides[slideIndices[className]-1].style.display = "block";  
+    setTimeout(() => showSlides(className), 3000);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    showSlides("itsme-group");
+    showSlides("flyer-group-6");
+    showSlides("flyer-group-7");
+    showSlides("car-group");
+    showSlides("house-group");
+    showSlides("airbnb-group");
+    const classNames = ["salon-group-1", "salon-group-2", "salon-group-3", "salon-group-4", "salon-group-5"];
+    classNames.forEach(name => showSlides(name));
+  });
+</script>
+</body>
+</html>
+
